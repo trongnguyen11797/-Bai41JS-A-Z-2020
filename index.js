@@ -52,15 +52,11 @@ function readFilePromise(path) {
         })
     })
 }
-readFilePromise('todos1.txt')
-.then(function(body) {
-    console.log('Link 1: ', body);
-    readFilePromise('todos2.txt')
-    .then(function(body) {
-        console.log('Link 2: ', body);
-        readFilePromise('todos3.txt')
-        .then(function(body) {
-            console.log('Link 3: ', body)
-        })
-    })
+
+Promise.all([
+    readFilePromise('todos1.txt'),
+    readFilePromise('todos2.txt'),
+    readFilePromise('todos3.txt'),
+]).then(function(values) {
+    console.log(values);
 })
